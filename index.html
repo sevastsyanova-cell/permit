@@ -17,7 +17,6 @@
     }
     .container { max-width: 1100px; margin: 0 auto; padding: 10px 0 40px; }
     .card { background: #1A1A1A; border-radius: 24px; padding: 32px 28px; margin-bottom: 28px; border: 1px solid #2A2A2A; }
-    .card-light { background: #141414; }
     h1 { font-size: 32px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.5px; }
     h2 { font-size: 24px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.3px; }
     h3 { font-size: 18px; font-weight: 600; margin-bottom: 12px; color: #D4A54A; }
@@ -39,13 +38,10 @@
     }
     .btn:hover { transform: scale(1.02); box-shadow: 0 8px 30px rgba(212, 165, 74, 0.25); }
     .btn-block { display: block; width: 100%; text-align: center; }
-    .btn-secondary { background: #2A2A2A; color: #FFFFFF; }
-    .btn-secondary:hover { background: #3A3A3A; }
     .screen { display: none; }
     .screen.active { display: block; animation: fadeIn 0.4s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Логин */
     .login-wrap { max-width: 400px; margin: 60px auto; text-align: center; }
     .login-wrap input {
       width: 100%; padding: 14px 18px; background: #1A1A1A; border: 1px solid #2A2A2A;
@@ -55,19 +51,17 @@
     .login-wrap input:focus { outline: none; border-color: #D4A54A; }
     .login-error { color: #E85A5A; font-size: 14px; margin-top: 8px; display: none; }
 
-    /* Таблицы */
     .criteria-table { width: 100%; border-collapse: collapse; font-size: 15px; }
     .criteria-table th, .criteria-table td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #2A2A2A; vertical-align: middle; }
     .criteria-table th { background: #1A1A1A; color: #B0B0B0; font-weight: 500; font-size: 13px; }
-    .criteria-table .col-center { text-align: center; }
-    .criteria-table .radio-group { display: flex; gap: 20px; justify-content: center; }
-    .criteria-table .radio-group label { display: flex; align-items: center; gap: 6px; font-size: 14px; cursor: pointer; color: #C0C0C0; }
-    .criteria-table input[type="radio"] { appearance: none; width: 18px; height: 18px; border-radius: 50%; border: 2px solid #555; flex-shrink: 0; transition: all 0.2s; position: relative; }
-    .criteria-table input[type="radio"]:checked { border-color: #D4A54A; background: #D4A54A; box-shadow: 0 0 0 3px rgba(212, 165, 74, 0.2); }
-    .criteria-table input[type="radio"]:checked::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 6px; height: 6px; background: #0B0B0B; border-radius: 50%; }
+    .criteria-table .col-center { text-align: center; width: 40px; }
+    .clickable { cursor: pointer; padding: 6px 12px; border-radius: 20px; transition: all 0.2s; display: inline-block; }
+    .clickable:hover { background: #2A2A2A; }
+    .clickable.selected { background: #D4A54A; color: #0B0B0B; font-weight: 600; }
     .text-small { font-size: 13px; color: #A0A0A0; }
+    .wish-input { width: 100%; padding: 14px 18px; background: #252525; border: 1px solid #2A2A2A; border-radius: 14px; color: #FFFFFF; font-size: 18px; font-family: 'Inter', sans-serif; margin-bottom: 16px; }
+    .wish-input:focus { outline: none; border-color: #D4A54A; }
 
-    /* Результат */
     .result-percent { font-size: 64px; font-weight: 800; text-align: center; margin: 10px 0 5px; }
     .result-percent.green { color: #5AE89A; }
     .result-percent.yellow { color: #E8C86A; }
@@ -79,25 +73,16 @@
     .scale-labels { display: flex; justify-content: space-between; font-size: 11px; color: #808080; }
     .scale-marker { position: absolute; top: -8px; width: 4px; height: 24px; background: #FFFFFF; border-radius: 4px; transition: left 0.8s ease; }
     .result-block { background: #252525; padding: 20px; border-radius: 16px; margin-bottom: 16px; border-left: 6px solid #D4A54A; }
-    .result-block .label { font-size: 14px; color: #A0A0A0; }
-    .result-block .value { font-size: 28px; font-weight: 700; }
-
-    .wish-input { width: 100%; padding: 14px 18px; background: #252525; border: 1px solid #2A2A2A; border-radius: 14px; color: #FFFFFF; font-size: 18px; font-family: 'Inter', sans-serif; margin-bottom: 16px; }
-    .wish-input:focus { outline: none; border-color: #D4A54A; }
 
     @media (max-width: 640px) {
       body { padding: 12px; }
-      .container { padding: 10px 0 20px; }
       .card { padding: 20px 16px; }
       h1 { font-size: 24px; }
       h2 { font-size: 20px; }
       .criteria-table { font-size: 13px; }
       .criteria-table th, .criteria-table td { padding: 8px 6px; }
-      .criteria-table .radio-group { gap: 10px; }
-      .criteria-table .radio-group label { font-size: 12px; }
       .result-percent { font-size: 48px; }
       .btn { font-size: 15px; padding: 12px 28px; width: 100%; }
-      .btn-group .btn { width: 100%; }
     }
   </style>
 </head>
@@ -132,10 +117,10 @@
   <section class="screen" id="screen-resolution">
     <div class="card">
       <h2>Разрешение — 32 критерия</h2>
-      <p class="text-small">Выбери один вариант в каждой строке — то, что ближе к твоему ощущению.</p>
+      <p class="text-small">Кликни на тот вариант, который ближе к твоему ощущению. Выбранный подсветится.</p>
       <div style="overflow-x:auto;">
         <table class="criteria-table" id="resolutionTable">
-          <thead><tr><th style="min-width:40px;">№</th><th>Достоинство (разрешаю)</th><th style="min-width:40px;"></th><th>Заслуга (запрещаю)</th></tr></thead>
+          <thead><tr><th style="min-width:40px;">№</th><th>Достоинство (разрешаю)</th><th style="min-width:30px;"></th><th>Заслуга (запрещаю)</th></tr></thead>
           <tbody id="resolutionBody"></tbody>
         </table>
       </div>
@@ -147,10 +132,10 @@
   <section class="screen" id="screen-permission">
     <div class="card">
       <h2>Позволение — 27 критериев</h2>
-      <p class="text-small">Выбери один вариант в каждой строке — то, что ближе к твоему ощущению.</p>
+      <p class="text-small">Кликни на тот вариант, который ближе к твоему ощущению. Выбранный подсветится.</p>
       <div style="overflow-x:auto;">
         <table class="criteria-table" id="permissionTable">
-          <thead><tr><th style="min-width:40px;">№</th><th>Позволение (чувство, тело)</th><th style="min-width:40px;"></th><th>Вседозволенность (анализ, голова)</th></tr></thead>
+          <thead><tr><th style="min-width:40px;">№</th><th>Позволение (чувство, тело)</th><th style="min-width:30px;"></th><th>Вседозволенность (анализ, голова)</th></tr></thead>
           <tbody id="permissionBody"></tbody>
         </table>
       </div>
@@ -200,9 +185,9 @@
     }
   }
 
-  // ===== ДАННЫЕ ТЕСТА =====
+  // ===== ВСЕ КРИТЕРИИ =====
 
-  // Разрешение (32)
+  // РАЗРЕШЕНИЕ (32)
   const resolutionData = [
     { id: 1, a: 'Безусловность', b: 'Условия перед собой, перед людьми' },
     { id: 2, a: 'Естественность, релевантность. Выбираю себе по размеру, не натягиваю, до чего не доросла. Честность с собой.', b: 'Несоответствие, пиздёж себе' },
@@ -238,7 +223,7 @@
     { id: 32, a: 'Рост души как причина', b: 'Рост души не происходит' }
   ];
 
-  // Позволение (27)
+  // ПОЗВОЛЕНИЕ (27)
   const permissionData = [
     { id: 1, a: 'Чувство. Я принимаю решения, основанные на чувствах.', b: 'Анализ головой' },
     { id: 2, a: '100% ответственность. Я принимаю на себя, что это моя ответственность.', b: 'Скидывание ответственности или забор ответственности у других' },
@@ -286,84 +271,66 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // ===== ЗАПОЛНЕНИЕ ТАБЛИЦ =====
-  function renderResolutionTable() {
-    const tbody = document.getElementById('resolutionBody');
+  // ===== КЛИКАБЕЛЬНЫЕ ТАБЛИЦЫ =====
+  function renderClickableTable(data, containerId, name) {
+    const tbody = document.getElementById(containerId);
     tbody.innerHTML = '';
-    resolutionData.forEach((item, idx) => {
+    data.forEach((item, idx) => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${idx+1}</td>
-        <td>${item.a}</td>
-        <td class="col-center">
-          <div class="radio-group">
-            <label><input type="radio" name="res_${idx}" value="1"> Да</label>
-            <label><input type="radio" name="res_${idx}" value="0"> Нет</label>
-          </div>
-        </td>
-        <td>${item.b}</td>
+        <td><span class="clickable" data-type="${name}_${idx}_a" onclick="selectOption(this, '${name}_${idx}')">${item.a}</span></td>
+        <td class="col-center"></td>
+        <td><span class="clickable" data-type="${name}_${idx}_b" onclick="selectOption(this, '${name}_${idx}')">${item.b}</span></td>
       `;
       tbody.appendChild(tr);
     });
   }
 
-  function renderPermissionTable() {
-    const tbody = document.getElementById('permissionBody');
-    tbody.innerHTML = '';
-    permissionData.forEach((item, idx) => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${idx+1}</td>
-        <td>${item.a}</td>
-        <td class="col-center">
-          <div class="radio-group">
-            <label><input type="radio" name="perm_${idx}" value="1"> Да</label>
-            <label><input type="radio" name="perm_${idx}" value="0"> Нет</label>
-          </div>
-        </td>
-        <td>${item.b}</td>
-      `;
-      tbody.appendChild(tr);
+  function selectOption(el, group) {
+    const row = el.closest('tr');
+    const all = row.querySelectorAll('.clickable');
+    all.forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function getSelectedCount(containerId) {
+    const rows = document.getElementById(containerId).querySelectorAll('tr');
+    let count = 0, total = 0;
+    rows.forEach(row => {
+      const selected = row.querySelector('.clickable.selected');
+      if (selected) {
+        total++;
+        if (selected.dataset.type.endsWith('_a')) count += 1;
+      }
     });
+    return { sum: count, count: total };
   }
 
   // ===== СТАРТ =====
   function startTest() {
     wish = document.getElementById('wishInput').value.trim() || 'Желание';
-    renderResolutionTable();
+    renderClickableTable(resolutionData, 'resolutionBody', 'res');
     showScreen('resolution');
   }
 
   function goToPermission() {
-    renderPermissionTable();
+    renderClickableTable(permissionData, 'permissionBody', 'perm');
     showScreen('permission');
   }
 
   // ===== РЕЗУЛЬТАТ =====
   function showResult() {
-    // Сбор разрешения
-    let resSum = 0, resCount = 0;
-    resolutionData.forEach((_, idx) => {
-      const sel = document.querySelector(`input[name="res_${idx}"]:checked`);
-      if (sel) { resSum += parseInt(sel.value); resCount++; }
-    });
-    const resPercent = resCount > 0 ? Math.round((resSum / resCount) * 100) : 0;
+    const res = getSelectedCount('resolutionBody');
+    const perm = getSelectedCount('permissionBody');
 
-    // Сбор позволения
-    let permSum = 0, permCount = 0;
-    permissionData.forEach((_, idx) => {
-      const sel = document.querySelector(`input[name="perm_${idx}"]:checked`);
-      if (sel) { permSum += parseInt(sel.value); permCount++; }
-    });
-    const permPercent = permCount > 0 ? Math.round((permSum / permCount) * 100) : 0;
+    const resPercent = res.count > 0 ? Math.round((res.sum / res.count) * 100) : 0;
+    const permPercent = perm.count > 0 ? Math.round((perm.sum / perm.count) * 100) : 0;
 
-    // Показать желание
     document.getElementById('resultWish').textContent = 'Твоё желание: ' + wish;
 
-    // Разрешение
-    const resBlock = document.getElementById('resolutionResult');
     const resLevel = getLevel(resPercent);
-    resBlock.innerHTML = `
+    document.getElementById('resolutionResult').innerHTML = `
       <div class="result-percent ${resLevel.color}">${resPercent}%</div>
       <div class="scale-container">
         <div class="scale-bar">
@@ -375,10 +342,8 @@
       <p><strong>Уровень:</strong> ${resLevel.label}</p>
     `;
 
-    // Позволение
-    const permBlock = document.getElementById('permissionResult');
     const permLevel = getLevel(permPercent);
-    permBlock.innerHTML = `
+    document.getElementById('permissionResult').innerHTML = `
       <div class="result-percent ${permLevel.color}">${permPercent}%</div>
       <div class="scale-container">
         <div class="scale-bar">
@@ -390,8 +355,6 @@
       <p><strong>Уровень:</strong> ${permLevel.label}</p>
     `;
 
-    // Вердикт
-    const verdict = document.getElementById('finalVerdict');
     let verdictText = '';
     if (resPercent >= 90 && permPercent >= 90) {
       verdictText = '✅ Почти безоговорочное разрешение и позволение. Желание полностью готово к реализации.';
@@ -406,7 +369,7 @@
     } else {
       verdictText = '🟠 Тело не позволяет. Есть телесный блок. Работать с позволением в теле.';
     }
-    verdict.innerHTML = `<p style="font-size:18px; margin:0;">${verdictText}</p>`;
+    document.getElementById('finalVerdict').innerHTML = `<p style="font-size:18px; margin:0;">${verdictText}</p>`;
 
     showScreen('result');
   }
@@ -426,6 +389,5 @@
   // ===== ИНИЦИАЛИЗАЦИЯ =====
   showScreen('login');
 </script>
-
 </body>
 </html>
